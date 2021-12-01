@@ -35,4 +35,16 @@ function part2(values::Array{Int,1})
     return count(==(INCREASED), change)
 end
 
+function alternative()
+    input = parse.(Int, readlines("../data/day01.txt"))
+
+    # *
+    ∑Δ(i) = i |> diff |> .|> >(0) |> sum |> println
+
+    # **
+    windows = [ sum(input[i:i+2]) for i=1:length(input)-2 ]
+
+    return [∑Δ(input), ∑Δ(windows)]
+end
+
 end # module
