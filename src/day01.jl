@@ -35,7 +35,7 @@ function part2(values::Array{Int,1})
     return count(==(INCREASED), change)
 end
 
-function alternative()
+function alternative1()
     input = parse.(Int, readlines("../data/day01.txt"))
 
     # *
@@ -45,6 +45,17 @@ function alternative()
     windows = [ sum(input[i:i+2]) for i=1:length(input)-2 ]
 
     return [∑Δ(input), ∑Δ(windows)]
+end
+
+function alternative2()
+    input = parse.(Int, readlines("../data/day01.txt"))
+    windows = [ sum(input[i:i+2]) for i=1:length(input)-2 ]
+
+    ispositive(items) = [ i > 0 ? 1 : 0 for i in items ]
+
+    ∑Δ = sum ∘ ispositive ∘ diff
+
+    return (∑Δ(input), ∑Δ(windows))
 end
 
 end # module
