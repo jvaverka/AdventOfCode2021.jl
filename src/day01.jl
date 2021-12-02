@@ -47,7 +47,7 @@ end
 function alternative2(input = parse.(Int, readlines("../data/day01.txt")))
     windows = [ sum(input[i:i+2]) for i=1:length(input)-2 ]
 
-    increased(items) = [ i > 0 ? 1 : 0 for i in items ]
+    increased(items) = items .> 0
 
     ∑Δ = sum ∘ increased ∘ diff
 
