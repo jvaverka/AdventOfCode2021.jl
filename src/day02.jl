@@ -25,9 +25,9 @@ function part2(values::Array{String,1})
     coord = CartesianIndex(0, 0, 0)
     for v in values
         magnitude = parse(Int, split(v)[2])
-        if startswith(v, "f")
-            coord += CartesianIndex(magnitude, 0, 0)
-            coord += magnitude * CartesianIndex(0, coord.I[3], 0)
+        startswith(v, "f") && begin
+            (coord += CartesianIndex(magnitude, 0, 0));
+            (coord += CartesianIndex(0, magnitude * coord.I[3], 0));
         end
         startswith(v, "d") && (coord += CartesianIndex(0, 0, magnitude))
         startswith(v, "u") && (coord += CartesianIndex(0, 0,-magnitude))
