@@ -14,3 +14,23 @@ end
     @test AdventOfCode2021.Day02.part2(sample) == 900
     @test AdventOfCode2021.Day02.day02() == [1728414, 1765720035]
 end
+
+@testset "Day 3" begin
+    sample = [
+        "00100",
+        "11110",
+        "10110",
+        "10111",
+        "10101",
+        "01111",
+        "00111",
+        "11100",
+        "10000",
+        "11001",
+        "00010",
+        "01010",
+    ]
+    @test AdventOfCode2021.Day03.part1(sample) == 198
+    @test AdventOfCode2021.Day03.part2(sample) == 230
+    @test AdventOfCode2021.Day03.day03() == [3633500, 4550283]
+end
