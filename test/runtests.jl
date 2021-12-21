@@ -55,3 +55,10 @@ end
     @test last(AdventOfCode2021.Day06.day06(readline(sample))) == 26984457539
     @test AdventOfCode2021.Day06.day06() == [343441, 1569108373832]
 end
+
+@testset "Day 7" begin
+    sample = joinpath(@__DIR__, "..", "data", "sample07.txt")
+    @test first(AdventOfCode2021.Day06.day07(readline(sample))) == 37
+    @test last(AdventOfCode2021.Day06.day07(readline(sample))) == 168
+    @test AdventOfCode2021.Day06.day07() == [341558, 93214037]
+end
