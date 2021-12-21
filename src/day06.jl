@@ -46,4 +46,26 @@ function part2(ages::Vector{Int64})
     x'A^256 |> sum
 end
 
+function alt(input::String = joinpath(@__DIR__, "..", "data", "day06.txt"))
+    fish = parse.(Int, split(input, ","))
+
+    🐟 = zeros(Int, 9)
+    for i=fish
+        🐟[i+1] += 1
+    end
+
+    function shift!(F)
+        F[8] += F[1]
+        F[1:8], F[9] = F[2:9], F[1]
+    end
+
+    for day=1:256
+        🐟 |> shift!
+        day==80 && 🐟 |> sum |> println # *
+    end
+
+    # **
+    🐟 |> sum |> println
+end
+
 end
