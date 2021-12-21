@@ -36,12 +36,8 @@ end
 end
 
 @testset "Day 4" begin
-    # TODO: fix sample tests
     sample = joinpath(@__DIR__, "..", "data", "sample04.txt")
-    draws = parse.(Int, split(readline(sample), ","))
-    rows = [parse.(Int, split(l)) for l in readlines(sample)[2:end] if !isempty(l)]
-    boards = [AdventOfCode2021.Day04.Board(rows[i:i+4]) for i=1:5:length(rows)]
-    @test AdventOfCode2021.Day04.part1(draws, boards) == 4512
-    @test AdventOfCode2021.Day04.part2(draws, boards) == 4495
-    @test AdventOfCode2021.Day04.day04() = [11774, 4495]
+    @test first(AdventOfCode2021.Day04.day04(sample)) == 4512
+    @test last(AdventOfCode2021.Day04.day04(sample)) == 1924
+    @test AdventOfCode2021.Day04.day04() == [11774, 4495]
 end
