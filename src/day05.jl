@@ -44,10 +44,32 @@ function markline(field::Matrix{Int64}, line::Line)
     end
 end
 
+function mark_exotic_line(field::Matrix{Int64}, line::Line)
+    if line.x₁ == line.x₂
+        littley = line.y₁ < line.y₂ ? line.y₁ : line.y₂
+        bigy = line.y₁ > line.y₂ ? line.y₁ : line.y₂
+        for y in littley:bigy
+            field[y, line.x₁] += 1
+        end
+    elseif line.y₁ == line.y₂
+        littlex = line.x₁ < line.x₂ ? line.x₁ : line.x₂
+        bigx = line.x₁ > line.x₂ ? line.x₁ : line.x₂
+        for x in littlex:bigx
+            field[line.y₁, x] += 1
+        end
+    else
+        x = line.x₁ < line.x₂ ? range(line.x₁, stop=line.x₂) : reverse(range(line.x₂, stop=line.x₁))
+        y = line.y₁ < line.y₂ ? range(line.y₁, stop=line.y₂) : reverse(range(line.y₂, stop=line.y₁))
+        for i in 1:length(x)
+            field[y[i], x[i]] += 1
+        end
+    end
+end
+
 function day05(input::Vector{String} = readlines(joinpath(@__DIR__, "..", "data", "day05.txt")))
     coords = split.(input, " -> ")
     lines = [Line(coord) for coord in coords]
-    return part1(lines)
+    return [part1(lines), part2(lines)]
 end
 
 function part1(lines::Vector{Line})
@@ -58,7 +80,12 @@ function part1(lines::Vector{Line})
     count(>=(2), oceanfloor)
 end
 
-function part2()
+function part2(lines::Vector{Line})
+    oceanfloor = zeros(Int, maxcoord(lines), maxcoord(lines))
+    for line in lines
+        mark_exotic_line(oceanfloor, line)
+    end
+    count(>=(2), oceanfloor)
 end
 
 end

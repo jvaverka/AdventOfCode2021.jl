@@ -44,6 +44,7 @@ end
 
 @testset "Day 5" begin
     sample = joinpath(@__DIR__, "..", "data", "sample05.txt")
-    @test AdventOfCode2021.Day05.day05(readlines(sample)) == 5
-    @test AdventOfCode2021.Day05.day05() == 5169
+    @test first(AdventOfCode2021.Day05.day05(readlines(sample))) == 5
+    @test last(AdventOfCode2021.Day05.day05(readlines(sample))) == 12
+    @test AdventOfCode2021.Day05.day05() == [5169, 22083]
 end
