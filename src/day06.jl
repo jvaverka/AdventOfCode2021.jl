@@ -1,8 +1,8 @@
 module Day06
 
 using AdventOfCode2021
-using LinearAlgebra
-using StatsBase
+using LinearAlgebra: I
+using StatsBase: counts
 
 mutable struct LanternFish
     timer::Int64
@@ -40,7 +40,7 @@ function part1(fish::Vector{LanternFish})
 end
 
 function part2(ages::Vector{Int64})
-    x = StatsBase.counts(ages, 0:8)
+    x = counts(ages, 0:8)
     A = Int[ 0 0 0 0 0 0 1 0 1
              I(8) zeros(8)]
     x'A^256 |> sum
